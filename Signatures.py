@@ -11,7 +11,7 @@
 # Developed on a Windows 11 machine
 #=================================================#
 
-from PyPDF2 import PdfWriter, PdfReader#, PageObject, Transformation
+from PyPDF2 import PdfWriter, PdfReader, PageObject, Transformation
 import math
 
 # get filename
@@ -32,7 +32,7 @@ page_count = len(inReader.pages)
 # consider adding case where there's 0 pages
 
 # create a list to hold the ordered signature pages before merging
-#ordered_pages = []
+ordered_pages = []
 
 # if not divisible by 4 add blank pages to a list until it is
 modFour = page_count % 4
@@ -49,10 +49,11 @@ if modFour != 0:
     pg_height = template_page.mediabox.height
     # add blanks to list of ordered pages
     for i in range(offset):
-        # blank = PageObject.create_blank_page(width = pg_width, height = pg_height)
-        # ordered_pages.append(blank)
-        outWriter.add_blank_page(width = pg_width, height = pg_height)
-
+        blank = PageObject.create_blank_page(width = pg_width, height = pg_height)
+        ordered_pages.append(blank)
+        # outWriter.add_blank_page(width = pg_width, height = pg_height)
+        
+print('after blank: len list', len(ordered_pages))
 
 # METHOD to add pages in order to make a single signature
 def make_a_taco(start_pg_index, end_pg_index, num_pages):
@@ -63,32 +64,34 @@ def make_a_taco(start_pg_index, end_pg_index, num_pages):
     # print('start_pg', start_pg)
     while(pgs_added_count != num_pages):
         # flip two added pgs if j is even
-        if(j % 2 == 0):
-            # ordered_pages.append(inReader.pages[i].rotate(180))
-            outWriter.add_page(inReader.pages[i].rotate(180))
-            #print('added page', i)
-            pgs_added_count += 1
-            if(pgs_added_count == num_pages):
-                break
-            # ordered_pages.append(inReader.pages[end_pg_index - j].rotate(180))
-            outWriter.add_page(inReader.pages[end_pg_index - j].rotate(180))
-            #print('added page', end_pg_index - i)
-            pgs_added_count += 1
+        # if(j % 2 == 0):
+        #     ordered_pages.append(inReader.pages[i].rotate(180))
+        #     # outWriter.add_page(inReader.pages[i].rotate(180))
+        #     #print('added page', i)
+        #     pgs_added_count += 1
+        #     if(pgs_added_count == num_pages):
+        #         break
+        #     ordered_pages.append(inReader.pages[end_pg_index - j].rotate(180))
+        #     # outWriter.add_page(inReader.pages[end_pg_index - j].rotate(180))
+        #     #print('added page', end_pg_index - i)
+        #     pgs_added_count += 1
 
-        # add pages without flipping when j is odd
-        else:
-            # ordered_pages.append(inReader.pages[i])       
-            outWriter.add_page(inReader.pages[i])
-            #print('added page', i)
-            pgs_added_count += 1
-            if(pgs_added_count == num_pages):
-                break
-            # ordered_pages.append(inReader.pages[end_pg_index - j])
-            outWriter.add_page(inReader.pages[end_pg_index - j])
-            #print('added page', end_pg_index - i)
-            pgs_added_count += 1
-        i += 1
+        # # add pages without flipping when j is odd
+        # else:
+        ordered_pages.append(inReader.pages[i])
+        # outWriter.add_page(inReader.pages[i])
+        #print('added page', i)
+        pgs_added_count += 1
+        if(pgs_added_count == num_pages):
+            break
+        ordered_pages.append(inReader.pages[end_pg_index - j])
+        # outWriter.add_page(inReader.pages[end_pg_index - j])
+        #print('added page', end_pg_index - i)
+        pgs_added_count += 1
+        i += 1 # goes to next front page
         j += 1
+    
+    print('after rest:', len(ordered_pages))
 
 # METHOD to merge each 2 properly-ordered pages onto one page
 # def merge_pages(page_list):
@@ -130,6 +133,22 @@ if(page_count > 32):
 else:
     make_a_taco(0, page_count - 1, page_count)
 
+ordered_pages.append(PageObject.create_blank_page(width=pg_width, height=pg_height))
+for i in range(0, len(ordered_pages), 4):
+    outWriter.add_page(ordered_pages[i].rotate(180))
+    outWriter.add_page(ordered_pages[i + 1].rotate(180))
+    outWriter.add_page(ordered_pages[i + 2])
+    outWriter.add_page(ordered_pages[i + 3])
+
+# for i in range(len(ordered_pages) // 2):
+#     if(i % 2 == 0):
+#         print('flipped when i was', i)
+#         ordered_pages[i].rotate(180)
+#         ordered_pages[i + 1].rotate(180)
+
+# for i in range(len(ordered_pages)):
+#     outWriter.add_page(ordered_pages[i])
+    
 #print(ordered_pages)
 # merge_pages(ordered_pages)
 
