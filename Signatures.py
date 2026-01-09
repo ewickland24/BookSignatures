@@ -9,6 +9,9 @@
 #              downloaded.
 #              The desired signature size is 32
 #              pages.
+#              The user will put 2 pages per sheet
+#              using the print dialogue menu and
+#              print double-sided.
 # Completed: 1/7/2026
 # Developed on a Windows 11 machine
 #=================================================#
@@ -17,7 +20,7 @@
 from PyPDF2 import PdfWriter, PdfReader, PageObject
 
 # get filename
-infile_name = input("Please enter the filename: ")
+infile_name = input("\nPlease enter the filename: ")
 
 # try/catch of file not found: "Check if the file is in the same folder as this program."
 
@@ -86,3 +89,5 @@ outfile_name = infile_name[:-4] + "_Signature.pdf"
 # write to the outfile
 with open(outfile_name, "wb") as outfile:
     outWriter.write(outfile)
+
+print('Process complete!\n', outfile_name, 'is ready.\n\nThank you for using BookSignatures!\n')
