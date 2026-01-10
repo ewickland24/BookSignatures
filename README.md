@@ -29,7 +29,7 @@ Find the green "&lt;&gt;Code" button on the repository page.
 ![An image of the BookSignatures repository page showing the "&lt;&gt;Code" button](<assets/Screenshot 2026-01-09 161006.png>)
 
 Click it, then look at the bottom of the menu and select "Download ZIP".
-![An image showing the "Download ZIP" button.](assets/Screenshot 2026-01-09 161724.png)
+![An image showing the "Download ZIP" button.](<assets/Screenshot 2026-01-09 161724.png>)
 
 Extract the ZIP file to a dedicated place in your file system.
 
@@ -109,9 +109,9 @@ It should be noted that **if there is already a file with the name assigned by t
 
 ### Step 4: Printing
 Search for the new PDF by entering the name displayed by the program into your file explorer. When it appears, open it in your browser by double-clicking the file.
-![An image showing an example PDF open in a browser.](assets/Screenshot 2026-01-09 162511.png)
+![An image showing an example PDF open in a browser.](<assets/Screenshot 2026-01-09 162511.png>)
 Select the "Print" option, and change the settings so that there are 2 pages per page and the printing will be double-sided.
-![An image showing the correct print settings.](assets/Screenshot 2026-01-09 162832.png)
+![An image showing the correct print settings.](<assets/Screenshot 2026-01-09 162832.png>)
 
 Hit the "Print" button.
 
@@ -144,7 +144,7 @@ PAGE SIZE AND IMAGES: Any page size will work with BookSignatures. Any PDF infor
 
 ## Support
 
-If you run into any issues while using BookSignatures or have any questions, please send an email to elianawickland@letu.edu and I'll get back to you as soon as I can!
+If you run into any issues while using BookSignatures or have any questions, please open an issue on GitHub and I'll get back to you as soon as I can!
 
 ## Roadmap (Future Updates)
 
