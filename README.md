@@ -26,7 +26,7 @@ There are two ways to download BookSignatures onto your device. If you don't hav
 
 FIRST OPTION:
 Find the green "&lt;&gt;Code" button on the repository page.
-![An image of the BookSignatures repository page showing the "&lt;&gt;Code" button](assets/Screenshot 2026-01-09 161006.png)
+![An image of the BookSignatures repository page showing the "&lt;&gt;Code" button](<assets/Screenshot 2026-01-09 161006.png>)
 
 Click it, then look at the bottom of the menu and select "Download ZIP".
 ![An image showing the "Download ZIP" button.](assets/Screenshot 2026-01-09 161724.png)
