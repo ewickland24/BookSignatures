@@ -115,7 +115,7 @@ Select the "Print" option, and change the settings so that there are 2 pages per
 
 Hit the "Print" button.
 
-When the document prints, it will print all at once. For an easier time keeping the signatures separate, remove each group of 8 sheets of paper as they get printed. If preferreed, you can also separate the pages after the printing is complete or collate the sheets if your printer supports that.
+When the document prints, it will print all at once. For an easier time keeping the signatures separate, remove each group of 8 sheets of paper as they get printed. If preferred, you can also separate the pages after the printing is complete or collate the sheets if your printer supports that.
 
 ## Printing Assumptions
 
