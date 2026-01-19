@@ -40,14 +40,15 @@ git clone https://github.com/ewickland24/BookSignatures
 ```
 
 ### Step 3: Install Software Dependencies
-BookSignatures uses PyPDF2. It is highly recommended to set up a virtual environment (venv) before installing the dependencies and to run BookSignatures there to keep all the needed software in one place (though not required).
+BookSignatures uses PyPDF2. While you can install the dependencies without a virtual environment (venv), it is highly recommended to set up a venv before installing the dependencies, and to run BookSignatures there to keep all the needed software in one place. Follow one of the options below.
 
+OPTION 1: DOWNLOAD WITHOUT A VENV
 To download BookSignatures' dependencies **without a venv**, enter the command below.
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-### Step 4: Setting up a Virtual Environment (HIGHLY RECOMMENDED)
+OPTION 2: SET UP A VENV AND DOWNLOAD
 To set up a venv, enter the following command into your command prompt:
 
 Windows:
@@ -67,7 +68,7 @@ Then activate it using the following command:
 ```bash
 source venv/bin/activate
 ```
-Now that you've set up the venv, you can install BookSignatures' dependencies by entering the following command into your command prompt:
+Now that you've set up the venv, navigate to the BookSignatures folder. Install BookSignatures' dependencies by entering the following command into your command prompt:
 ```bash
 python -m pip install -r requirements.txt
 ```
@@ -78,7 +79,18 @@ python -m pip install -r requirements.txt
 If you haven't already, please follow the installation instructions above.
 
 ### Step 2: Running BookSignatures
-Go to your command prompt (or Terminal on Mac), navigate to the folder BookSignatures is stored in, and enter the following command:
+If you are getting ready to run the program for the first time immediately after setting it up using the instructions above, skip the venv command below and run the next one.
+
+**Note: The following step (activating your venv) needs to be done each time you open a new command prompt, not every time a PDF is run through the program.**
+
+Go to your command prompt (or Terminal on Mac), and activate your venv by entering the following command.
+
+Windows and Mac:
+```bash
+source venv/bin/activate
+```
+
+Then navigate to the folder BookSignatures is stored in, and enter the following command:
 
 Windows and Mac:
  ```bash
@@ -88,11 +100,15 @@ Note: Some Windows users may need to use py instead of python.
 
 If the program successfully boots, it will request the filename of a PDF:
 ```txt
-Please enter the filename: 
+Please enter the file path to the PDF: 
 ```
 Paste the path to the PDF into the command prompt. You can usually copy the file path by navigating to the file in your file explorer, and either copying the path out of the bar at the top, or by finding an option "Copy path" in a menu. Hit enter.
 
-BookSignatures will then attempt to find the PDF in your file system and read it. If the path is invalid, the program will exit. Check and correct the file path and try again, starting with Step 2.
+BookSignatures will then attempt to find the PDF in your file system and read it. If the path is invalid, the program will display the following error and exit.
+```txt
+ERROR: File not found. Check to see if file path is correct and run again.
+```
+Check and correct the file path and try again, starting with Step 2.
 
 When it is finished, BookSignatures will display the following message:
 ```txt
@@ -119,7 +135,7 @@ When the document prints, it will print all at once. For an easier time keeping 
 
 ## Printing Assumptions
 
-The following are key assumptions made what the user wants and how they will print the new PDF:
+The following key assumptions are made about what the user wants and how they will print the new PDF:
 
 1. The desired signature size is 32 pages.
 2. The user will assign 2 pages per page **using the printing dialog menu** and print double-sided. 
@@ -148,7 +164,7 @@ If you run into any issues while using BookSignatures or have any questions, ple
 
 ## Roadmap (Future Updates)
 
-JANUARY 2026: Proper error-handling for an invalid path.
+~~JANUARY 2026: Proper error-handling for an invalid path.~~ ✅COMPLETED
 
 FEBRUARY 2026: Support for printing single-signature booklets that are larger than 32 pages.
 
