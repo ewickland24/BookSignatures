@@ -12,20 +12,23 @@
 #              The user will put 2 pages per sheet
 #              using the print dialogue menu and
 #              print double-sided.
-# Completed: 1/7/2026
+# Initially Completed: 1/7/2026
 # Developed on a Windows 11 machine
 #=================================================#
 
 
 from PyPDF2 import PdfWriter, PdfReader, PageObject
+import sys
 
 # get filename
-infile_name = input("\nPlease enter the filename: ")
-
-# try/catch of file not found: "Check if the file is in the same folder as this program."
+infile_name = input("\nPlease enter the file path to the PDF: ")
 
 # create reader and writer
-inReader = PdfReader(infile_name)
+try:
+    inReader = PdfReader(infile_name)
+except(FileNotFoundError):
+    print("\nERROR: File not found. Check to see if file path is correct and run again.\n")
+    sys.exit(1)
 outWriter = PdfWriter()
 
 # get page count of original PDF
