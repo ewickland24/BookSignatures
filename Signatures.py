@@ -60,13 +60,13 @@ if modFour != 0:
         padded_doc.append(blank)
         
 
-# METHOD to convert the padded_doc list into a list with the printing format
-def convert_to_signatures(origin_list):
+# METHOD to put all the pages in proper printing format
+def convert_to_printing_format(page_group_size, origin_list):
     output_list = []
     group_start = 0
 
     while group_start < len(origin_list):
-        group_size = min(32, len(origin_list) - group_start)
+        group_size = min(page_group_size, len(origin_list) - group_start)
         sheets = group_size // 4
         for i in range(sheets):
             output_list.append(origin_list[group_start + group_size - i*2 - 1])
@@ -78,20 +78,13 @@ def convert_to_signatures(origin_list):
     
     return output_list
 
+# METHOD to convert the padded_doc list into a list with the printing format
+def convert_to_signatures(origin_list):
+    return convert_to_printing_format(32, origin_list)    
 
 # METHOD to convert list into a list in booklet format
 def convert_to_booklet(origin_list):
-    output_list = []
-    group_size = len(origin_list)
-    sheets = group_size // 4 
-
-    for i in range(sheets):
-        output_list.append(origin_list[group_size - i*2 - 1])
-        output_list.append(origin_list[i*2])
-        output_list.append(origin_list[i*2 + 1])
-        output_list.append(origin_list[group_size - i*2 - 2])       
-    
-    return output_list
+    return convert_to_printing_format(len(origin_list), origin_list)
 
 
 # get user choice of how to format PDF
