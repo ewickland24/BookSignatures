@@ -110,6 +110,8 @@ ERROR: File not found. Check to see if file path is correct and run again.
 ```
 Check and correct the file path and try again, starting with Step 2.
 
+After this, the option will appear to format the PDF in either book signature format or booklet format by entering 1 or 2. (Booklet format arranges the PDF so that it can be folded directly in half and make (surprise!) a booklet, rather than splitting the PDF into multiple smaller groups of pages to be bound together.)
+
 When it is finished, BookSignatures will display the following message:
 ```txt
 Process complete!
@@ -127,7 +129,7 @@ It should be noted that **if there is already a file with the name assigned by t
 Search for the new PDF by entering the name displayed by the program into your file explorer. When it appears, open it in your browser by double-clicking the file.
 ![An image showing an example PDF open in a browser.](<assets/Screenshot 2026-01-09 162511.png>)
 Select the "Print" option, and change the settings so that there are 2 pages per page and the printing will be double-sided.
-![An image showing the correct print settings.](<assets/Screenshot 2026-01-09 162832.png>)
+![An image showing the correct printing settings.](<assets/Screenshot 2026-01-09 162832.png>)
 
 Hit the "Print" button.
 
@@ -137,7 +139,7 @@ When the document prints, it will print all at once. For an easier time keeping 
 
 The following key assumptions are made about what the user wants and how they will print the new PDF:
 
-1. The desired signature size is 32 pages.
+1. The desired signature size is 32 pages (if signature format is chosen).
 2. The user will assign 2 pages per page **using the printing dialog menu** and print double-sided. 
 3. The pages in original PDF will be in consecutive order.
 4. The user will input a path to a PDF only.
@@ -156,6 +158,8 @@ DOCUMENT PADDING: When the number of pages in the original document is not evenl
 
 SIGNATURES: BookSignatures breaks the original document up into 32-page signatures and organizes the signatures in consecutive order. If the original document contains fewer than 32 pages, then the entire document will be contained in one signature which may be printed as a booklet.
 
+BOOKLETS: BookSignatures arranges all the pages in the PDF so that they may be printed as a booklet.
+
 PAGE SIZE AND IMAGES: Any page size will work with BookSignatures. Any PDF information that can be interpreted by PyPDF2, including images, will be preserved in the new PDF.
 
 ## Support
@@ -166,7 +170,7 @@ If you run into any issues while using BookSignatures or have any questions, ple
 
 ~~JANUARY 2026: Proper error-handling for an invalid path.~~ ✅COMPLETED
 
-FEBRUARY 2026: Support for printing single-signature booklets that are larger than 32 pages.
+~~FEBRUARY 2026: Support for printing single-signature booklets that are larger than 32 pages.~~ ✅COMPLETED
 
 ## License
 
