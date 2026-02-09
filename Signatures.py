@@ -82,16 +82,14 @@ def convert_to_signatures(origin_list):
 # METHOD to convert list into a list in booklet format
 def convert_to_booklet(origin_list):
     output_list = []
-
     group_size = len(origin_list)
+    sheets = group_size // 4 
 
-    for i in range(len(origin_list)): # 0-8 (7?)
-        sheets = group_size // 4 # 2
-        for i in range(sheets): # 2
-            output_list.append(origin_list[group_size - i*2 - 1])
-            output_list.append(origin_list[i*2])
-            output_list.append(origin_list[i*2 + 1])
-            output_list.append(origin_list[group_size - i*2 - 2])       
+    for i in range(sheets):
+        output_list.append(origin_list[group_size - i*2 - 1])
+        output_list.append(origin_list[i*2])
+        output_list.append(origin_list[i*2 + 1])
+        output_list.append(origin_list[group_size - i*2 - 2])       
     
     return output_list
 
@@ -112,7 +110,7 @@ filename_suffix = "_Signature.pdf"
 if(booklet_or_signature == 1):
     ordered_pages = convert_to_signatures(padded_doc)
 
-elif(booklet_or_signature == 2):
+else:
     ordered_pages = convert_to_booklet(padded_doc)
     filename_suffix = "_Booklet.pdf"
 
