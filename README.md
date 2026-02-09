@@ -129,11 +129,13 @@ It should be noted that **if there is already a file with the name assigned by t
 Search for the new PDF by entering the name displayed by the program into your file explorer. When it appears, open it in your browser by double-clicking the file.
 ![An image showing an example PDF open in a browser.](<assets/Screenshot 2026-01-09 162511.png>)
 Select the "Print" option, and change the settings so that there are 2 pages per page and the printing will be double-sided.
+
 ![An image showing the correct printing settings.](<assets/Screenshot 2026-01-09 162832.png>)
+
 
 Hit the "Print" button.
 
-When the document prints, it will print all at once. For an easier time keeping the signatures separate, remove each group of 8 sheets of paper as they get printed. If preferreed, you can also separate the pages after the printing is complete or collate the sheets if your printer supports that.
+When the document prints, it will print all at once. For an easier time keeping the signatures separate, remove each group of 8 sheets of paper as they get printed. If preferred, you can also separate the pages after the printing is complete or collate the sheets if your printer supports that.
 
 ## Printing Assumptions
 

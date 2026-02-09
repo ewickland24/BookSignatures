@@ -12,20 +12,24 @@
 #              The user will put 2 pages per sheet
 #              using the print dialogue menu and
 #              print double-sided.
-# Completed: 1/7/2026
+# Initially Completed: 1/7/2026
 # Developed on a Windows 11 machine
 #=================================================#
 
 
 from PyPDF2 import PdfWriter, PdfReader, PageObject
+import sys
+
 
 # get filename
-infile_name = input("\nPlease enter the filename: ")
-
-# try/catch of file not found: "Check if the file is in the same folder as this program."
+infile_name = input("\nPlease enter the file path to the PDF: ")
 
 # create reader and writer
-inReader = PdfReader(infile_name)
+try:
+    inReader = PdfReader(infile_name)
+except(FileNotFoundError):
+    print("\nERROR: File not found. Check to see if file path is correct and run again.\n")
+    sys.exit(1)
 outWriter = PdfWriter()
 
 # get page count of original PDF
@@ -56,13 +60,13 @@ if modFour != 0:
         padded_doc.append(blank)
         
 
-# METHOD to convert the padded_doc list into a list with the printing format
-def convert_to_signatures(origin_list):
+# METHOD to put all the pages in proper printing format
+def convert_to_printing_format(page_group_size, origin_list):
     output_list = []
     group_start = 0
 
     while group_start < len(origin_list):
-        group_size = min(32, len(origin_list) - group_start)
+        group_size = min(page_group_size, len(origin_list) - group_start)
         sheets = group_size // 4
         for i in range(sheets):
             output_list.append(origin_list[group_start + group_size - i*2 - 1])
@@ -74,9 +78,34 @@ def convert_to_signatures(origin_list):
     
     return output_list
 
+# METHOD to convert the padded_doc list into a list with the printing format
+def convert_to_signatures(origin_list):
+    return convert_to_printing_format(32, origin_list)    
 
-# create a list to hold the ordered signature pages
-ordered_pages = convert_to_signatures(padded_doc)
+# METHOD to convert list into a list in booklet format
+def convert_to_booklet(origin_list):
+    return convert_to_printing_format(len(origin_list), origin_list)
+
+
+# get user choice of how to format PDF
+booklet_or_signature = int(input("\nHow would you like to format your PDF?" +
+                             "\nEnter 1 to format in book signatures.\nEnter 2 to format as a booklet." +
+                             "\nWhat would you like to do?: "))
+
+while(booklet_or_signature != 1 and booklet_or_signature != 2):
+    print("\nInvalid input. Please enter 1 or 2.")
+    booklet_or_signature = input("\nWhat would you like to do?: ")
+
+# set the new filename suffix
+filename_suffix = "_Signature.pdf"
+
+# create a list to hold the formatted pages
+if(booklet_or_signature == 1):
+    ordered_pages = convert_to_signatures(padded_doc)
+
+else:
+    ordered_pages = convert_to_booklet(padded_doc)
+    filename_suffix = "_Booklet.pdf"
 
 # write the ordered list to the output PDF
 for i in range(len(ordered_pages)):
@@ -85,9 +114,9 @@ for i in range(len(ordered_pages)):
 
 # OUTPUT FILE =====================================================================
 # create the outfile name (filename+_Signature.pdf)
-outfile_name = infile_name[:-4] + "_Signature.pdf"
+outfile_name = infile_name[:-4] + filename_suffix
 # write to the outfile
 with open(outfile_name, "wb") as outfile:
     outWriter.write(outfile)
 
-print('Process complete!\n', outfile_name, 'is ready.\n\nThank you for using BookSignatures!\n')
+print('\nProcess complete!\n', outfile_name, 'is ready.\n\nThank you for using BookSignatures!\n')
